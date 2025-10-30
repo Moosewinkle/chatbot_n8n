@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat Widget Test</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 24px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .card { padding: 16px 20px; border: 1px solid #e5e7eb; border-radius: 12px; background: #f9fafb; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Chat Widget Test (GitHub Pages)</h1>
+    <p class="card">
+      You should see a floating chat button in the bottom-right. If it opens here, the Hostinger builder was the issue.
+      You can embed this page back in your Hostinger site via an <code>&lt;iframe&gt;</code>.
+    </p>
+  </div>
+
+  <script>
+    // --- Your widget config ---
+    window.ChatWidgetConfig = {
+      webhook: {
+        url: 'https://n8n.srv1005241.hstgr.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
+        route: 'general'
+      },
+      branding: {
+        logo: 'https://via.placeholder.com/64',
+        name: 'Your Company Name',
+        welcomeText: 'Hi 👋, how can we help?',
+        responseTimeText: 'We typically respond right away'
+      },
+      style: {
+        primaryColor: '#854fff',
+        secondaryColor: '#6b3fd4',
+        position: 'right',
+        backgroundColor: '#ffffff',
+        fontColor: '#333333'
+      }
+    };
+
+    // --- Safe loader (ensures config exists before the widget script executes) ---
+    (function loadChatWidget() {
+      function inject() {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/gh/juansebsol/n8n-chatbot-template@latest/chat-widget.js';
+        s.defer = true;
+        s.onload = () => console.log('[widget] script loaded');
+        s.onerror = (e) => console.error('[widget] script failed to load', e);
+        document.body.appendChild(s);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', inject);
+      } else {
+        inject();
+      }
+    })();
+
+    // Optional: tag the textarea to silence the Issues warning
+    (function tagChatTextarea() {
+      function tryTag() {
+        var el = document.querySelector('textarea[placeholder="Type your message here..."]');
+        if (el && !el.name && !el.id) {
+          el.name = 'chatInput';
+          el.id = 'chat-widget-input';
+          el.setAttribute('autocomplete', 'off');
+          el.setAttribute('aria-label', 'Chat message input');
+          console.log('[widget] tagged textarea');
+        }
+      }
+      const obs = new MutationObserver(tryTag);
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+      tryTag();
+    })();
+  </script>
+</body>
+</html>
