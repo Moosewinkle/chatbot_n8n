@@ -1,6 +1,28 @@
+<!-- 1) CONFIG: put your n8n webhook URL here -->
 <script>
-  window.ChatWidgetConfig = { /* your same config */ };
+  window.ChatWidgetConfig = {
+    webhook: {
+      url: 'https://n8n.srv1005241.hstgr.cloud/webhook/a1045ef5-5e46-453a-95a6-957a586c9002/chat',
+      route: 'general'
+    },
+    branding: {
+      logo: 'https://via.placeholder.com/64',
+      name: 'Your Company Name',
+      welcomeText: 'Hi 👋, how can we help?',
+      responseTimeText: 'We typically respond right away'
+    },
+    style: {
+      primaryColor: '#854fff',
+      secondaryColor: '#6b3fd4',
+      position: 'right',
+      backgroundColor: '#ffffff',
+      fontColor: '#333333'
+    }
+  };
+</script>
 
+<!-- 2) LOADER: load your local chat-widget.js, fall back to CDN -->
+<script>
   (function loadChatWidget() {
     function inject(src, onerror){
       var s = document.createElement('script');
@@ -9,7 +31,7 @@
       if (onerror) s.onerror = onerror;
       document.body.appendChild(s);
     }
-    // REPLACE with your real username/repo:
+    // replace with your actual GitHub username/repo
     const LOCAL = 'https://<your-username>.github.io/<your-repo>/chat-widget.js';
     const CDN   = 'https://cdn.jsdelivr.net/gh/juansebsol/n8n-chatbot-template@latest/chat-widget.js';
 
