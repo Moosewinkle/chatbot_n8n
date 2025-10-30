@@ -1,41 +1,22 @@
 <script>
-  // --- your existing config (keep as-is) ---
-  window.ChatWidgetConfig = {
-    webhook: {
-      url: 'https://n8n.srv1005241.hstgr.cloud/webhook/f406671e-c954-4691-b39a-66c90aa2f103/chat',
-      route: 'general'
-    },
-    branding: {
-      logo: 'https://via.placeholder.com/64',
-      name: 'Your Company Name',
-      welcomeText: 'Hi 👋, how can we help?',
-      responseTimeText: 'We typically respond right away'
-    },
-    style: {
-      primaryColor: '#854fff',
-      secondaryColor: '#6b3fd4',
-      position: 'right',
-      backgroundColor: '#ffffff',
-      fontColor: '#333333'
-    }
-  };
+  window.ChatWidgetConfig = { /* your same config */ };
 
-  // Load local script first; fall back to CDN only if local fails
   (function loadChatWidget() {
-    function inject(src, onerror) {
+    function inject(src, onerror){
       var s = document.createElement('script');
       s.src = src;
       s.defer = true;
       if (onerror) s.onerror = onerror;
       document.body.appendChild(s);
     }
-    function loadCdnFallback() {
-      inject('https://cdn.jsdelivr.net/gh/juansebsol/n8n-chatbot-template@latest/chat-widget.js');
-    }
+    // REPLACE with your real username/repo:
+    const LOCAL = 'https://<your-username>.github.io/<your-repo>/chat-widget.js';
+    const CDN   = 'https://cdn.jsdelivr.net/gh/juansebsol/n8n-chatbot-template@latest/chat-widget.js';
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function () { inject('./chat-widget.js', loadCdnFallback); });
+      document.addEventListener('DOMContentLoaded', () => inject(LOCAL, () => inject(CDN)));
     } else {
-      inject('./chat-widget.js', loadCdnFallback);
+      inject(LOCAL, () => inject(CDN));
     }
   })();
 </script>
