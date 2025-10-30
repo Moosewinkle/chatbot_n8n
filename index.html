@@ -1,44 +1,53 @@
-<!-- 1) CONFIG: put your n8n webhook URL here -->
-<script>
-  window.ChatWidgetConfig = {
-    webhook: {
-      url: 'https://n8n.srv1005241.hstgr.cloud/webhook/a1045ef5-5e46-453a-95a6-957a586c9002/chat',
-      route: 'general'
-    },
-    branding: {
-      logo: 'https://via.placeholder.com/64',
-      name: 'Your Company Name',
-      welcomeText: 'Hi 👋, how can we help?',
-      responseTimeText: 'We typically respond right away'
-    },
-    style: {
-      primaryColor: '#854fff',
-      secondaryColor: '#6b3fd4',
-      position: 'right',
-      backgroundColor: '#ffffff',
-      fontColor: '#333333'
-    }
-  };
-</script>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat Widget Test</title>
+</head>
+<body>
+  <!-- 1) CONFIG: put your n8n webhook URL here -->
+  <script>
+    window.ChatWidgetConfig = {
+      webhook: {
+        url: 'https://n8n.srv1005241.hstgr.cloud/webhook-test/a04711bc-cafe-4e74-9746-7fd3c5cbf49b',
+        route: 'general'
+      },
+      branding: {
+        logo: 'https://via.placeholder.com/64',
+        name: 'Your Company Name',
+        welcomeText: 'Hi 👋, how can we help?',
+        responseTimeText: 'We typically respond right away'
+      },
+      style: {
+        primaryColor: '#854fff',
+        secondaryColor: '#6b3fd4',
+        position: 'right',
+        backgroundColor: '#ffffff',
+        fontColor: '#333333'
+      }
+    };
+  </script>
 
-<!-- 2) LOADER: load your local chat-widget.js, fall back to CDN -->
-<script>
-  (function loadChatWidget() {
-    function inject(src, onerror){
-      var s = document.createElement('script');
-      s.src = src;
-      s.defer = true;
-      if (onerror) s.onerror = onerror;
-      document.body.appendChild(s);
-    }
-    // replace with your actual GitHub username/repo
-    const LOCAL = 'https://moosewinkle.github.io/chatbot_n8n/chat-widget.js';
-    const CDN   = 'https://cdn.jsdelivr.net/gh/juansebsol/n8n-chatbot-template@latest/chat-widget.js';
+  <!-- 2) LOADER: load your local chat-widget.js, fall back to CDN -->
+  <script>
+    (function loadChatWidget() {
+      function inject(src, onerror){
+        var s = document.createElement('script');
+        s.src = src;
+        s.defer = true;
+        if (onerror) s.onerror = onerror;
+        document.body.appendChild(s);
+      }
+      const LOCAL = 'https://https://moosewinkle.github.io/chatbot_n8n/chat-widget.js';
+      const CDN   = 'https://cdn.jsdelivr.net/gh/juansebsol/n8n-chatbot-template@latest/chat-widget.js';
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => inject(LOCAL, () => inject(CDN)));
-    } else {
-      inject(LOCAL, () => inject(CDN));
-    }
-  })();
-</script>
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => inject(LOCAL, () => inject(CDN)));
+      } else {
+        inject(LOCAL, () => inject(CDN));
+      }
+    })();
+  </script>
+</body>
+</html>
