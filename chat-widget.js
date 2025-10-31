@@ -296,7 +296,7 @@
             welcomeText: '',
             responseTimeText: '',
             poweredBy: {
-                text: 'Ashpark AI',
+                text: 'Powered by Ashpark AI',
                 link: ''
             }
         },
